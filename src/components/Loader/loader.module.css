@@ -1,0 +1,25 @@
+/* components/Loader.module.css */
+@keyframes scale-up4 {
+  20% {
+    background-color: #fff;
+    transform: scaleY(1.5);
+  }
+
+  40% {
+    transform: scaleY(1);
+  }
+}
+
+.bar {
+  animation: scale-up4 1s linear infinite;
+}
+
+.bar2 {
+  height: 35px;
+  margin: 0 5px;
+  animation-delay: 0.25s;
+}
+
+.bar3 {
+  animation-delay: 0.5s;
+}
