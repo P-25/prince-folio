@@ -4,6 +4,7 @@ import Loader from "@/components/Loader";
 
 import Island from "./../models/island";
 import Sky from "@/models/sky";
+import PirateFlagPopup from "@/components/PirateFlagPopup";
 
 {
   /* <div className="absolute top-28 right-0 left-0 z-10 flex items-center justify-center">
@@ -14,6 +15,18 @@ export default function Home() {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(null);
 
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleConfirm = () => {
+    setShowPopup(false);
+    console.log("Confirmed!");
+  };
+
+  const handleCancel = () => {
+    setShowPopup(false);
+    console.log("Cancelled!");
+  };
+
   useEffect(() => {
     console.log(`Debug - currentStage`, currentStage);
   }, [currentStage]);
@@ -21,7 +34,7 @@ export default function Home() {
   const adjustIs1andForScreenSize = () => {
     let screenSca1e = null;
     let screenPosition = [0, -10, -30];
-    let rotation = [0.1, 4.7, 0];
+    let rotation = [0.1, 5.5, 0];
     if (typeof window !== "undefined") {
       if (window.innerWidth < 768) {
         screenSca1e = [0.9, 0.9, 0.9];
@@ -37,6 +50,7 @@ export default function Home() {
 
   return (
     <section className="w-full h-screen relative">
+      <PirateFlagPopup onConfirm={handleConfirm} onCancel={handleCancel} />
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
