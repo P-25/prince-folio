@@ -1,5 +1,8 @@
-/* eslint-disable react/no-unknown-property */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { a } from "@react-spring/three";
+import * as THREE from "three";
 import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 
@@ -1657,12 +1660,13 @@ const Island = ({
             scale={0.579}
           />
           <mesh
-            name="Object_274"
+            name="sea_land"
             geometry={nodes.Object_274.geometry}
+            // geometry={geometry}
             material={materials.Base_Palette}
             position={[0, -0.445, 0]}
             rotation={[-Math.PI, 0, -Math.PI]}
-            scale={[200.679, 17.786, 200.679]}
+            scale={[27.679, 17.786, 27.679]}
           />
           <mesh
             name="sea_water"
@@ -1671,7 +1675,7 @@ const Island = ({
             material={water}
             position={[0, 2.262, 0]}
             rotation={[-Math.PI, 0, -Math.PI]}
-            scale={[200, 17.681, 200]}
+            scale={[27, 17.681, 27]}
           />
           <mesh
             name="Object_278"

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "@/components/Loader";
@@ -5,6 +8,8 @@ import Loader from "@/components/Loader";
 import Island from "./../models/island";
 import Sky from "@/models/sky";
 import PirateFlagPopup from "@/components/PirateFlagPopup";
+import GoingMerry from "@/models/goingmerry";
+import NormalPopup from "@/components/NormalPopup";
 
 {
   /* <div className="absolute top-28 right-0 left-0 z-10 flex items-center justify-center">
@@ -13,7 +18,7 @@ popup
 }
 export default function Home() {
   const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(null);
+  const [currentStage, setCurrentStage] = useState(1);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -22,18 +27,9 @@ export default function Home() {
     console.log("Confirmed!");
   };
 
-  const handleCancel = () => {
-    setShowPopup(false);
-    console.log("Cancelled!");
-  };
-
-  useEffect(() => {
-    console.log(`Debug - currentStage`, currentStage);
-  }, [currentStage]);
-
   const adjustIs1andForScreenSize = () => {
     let screenSca1e = null;
-    let screenPosition = [0, -10, -30];
+    let screenPosition = [0, -10, -40];
     let rotation = [0.1, 5.5, 0];
     if (typeof window !== "undefined") {
       if (window.innerWidth < 768) {
@@ -50,7 +46,12 @@ export default function Home() {
 
   return (
     <section className="w-full h-screen relative">
-      <PirateFlagPopup onConfirm={handleConfirm} onCancel={handleCancel} />
+      {/* <PirateFlagPopup onButtonClick={handleConfirm} /> */}
+
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+        {currentStage && <NormalPopup currentStage={currentStage} />}
+      </div>
+
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
@@ -65,10 +66,11 @@ export default function Home() {
             skyColor={`#b1e1ff`}
             intensity={1}
           />
+          <GoingMerry scale={[0.3, 0.3, 0.3]} position={[1, -2.5, 0]} />
           <Sky isRotating={isRotating} />
           <Island
             position={islandPosition}
-            sca1e={islandSca1e}
+            scale={islandSca1e}
             rotation={islandRotation}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
