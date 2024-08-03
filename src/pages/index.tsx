@@ -1,83 +1,34 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
-import { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import Loader from "@/components/Loader";
-
-import Island from "./../models/island";
-import Sky from "@/models/sky";
-import PirateFlagPopup from "@/components/PirateFlagPopup";
-import GoingMerry from "@/models/goingmerry";
-import NormalPopup from "@/components/NormalPopup";
-
-{
-  /* <div className="absolute top-28 right-0 left-0 z-10 flex items-center justify-center">
-popup
-</div>  */
-}
-export default function Home() {
-  const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleConfirm = () => {
-    setShowPopup(false);
-    console.log("Confirmed!");
-  };
-
-  const adjustIs1andForScreenSize = () => {
-    let screenSca1e = null;
-    let screenPosition = [0, -10, -40];
-    let rotation = [0.1, 5.5, 0];
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 768) {
-        screenSca1e = [0.9, 0.9, 0.9];
-      } else {
-        screenSca1e = [1, 1, 1];
-      }
-    }
-    return [screenSca1e, screenPosition, rotation];
-  };
-
-  const [islandSca1e, islandPosition, islandRotation] =
-    adjustIs1andForScreenSize();
-
+export default function Index() {
   return (
     <section className="w-full h-screen relative">
-      {/* <PirateFlagPopup onButtonClick={handleConfirm} /> */}
-
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        {currentStage && <NormalPopup currentStage={currentStage} />}
-      </div>
-
-      <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        camera={{ near: 0.1, far: 1000 }}
+      <div
+        className="relative h-screen w-full flex items-center justify-center bg-cover bg-center text-center px-5"
+        style={{
+          backgroundImage:
+            "url(https://images.pexels.com/photos/601174/pexels-photo-601174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+        }}
       >
-        <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
-          <hemisphereLight
-            groundColor={`#000000`}
-            skyColor={`#b1e1ff`}
-            intensity={1}
-          />
-          <GoingMerry scale={[0.3, 0.3, 0.3]} position={[1, -2.5, 0]} />
-          <Sky isRotating={isRotating} />
-          <Island
-            position={islandPosition}
-            scale={islandSca1e}
-            rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-          />
-        </Suspense>
-      </Canvas>
+        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-900 opacity-75"></div>
+
+        <div className="z-50 flex flex-col justify-center text-white w-full h-screen">
+          <h1 className="text-5xl">
+            <b>Almost</b> there!
+          </h1>
+          <br></br>
+          <p>Stay tuned for something amazing!!!</p>
+
+          <div className="mt-10 mb-5">
+            <div className="shadow w-full bg-white mt-2 max-w-2xl mx-auto rounded-full">
+              <div
+                className="rounded-full bg-indigo-600 text-xs leading-none text-center text-white py-1"
+                style={{ width: "75%" }}
+              >
+                75%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
