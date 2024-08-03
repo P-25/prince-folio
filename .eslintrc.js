@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     "react/no-unescaped-entities": "off",
     "@typescript-eslint/no-explicit-any": "error",
+    "react/prop-types": "off",
     "react/no-unknown-property": [
       "error",
       {
