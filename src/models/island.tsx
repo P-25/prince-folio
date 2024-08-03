@@ -1,8 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { a } from "@react-spring/three";
-import * as THREE from "three";
 import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 

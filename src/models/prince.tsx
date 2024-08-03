@@ -4,7 +4,7 @@
 import { useGLTF } from "@react-three/drei";
 
 // 3D Model from: https://sketchfab.com/3d-models/phoenix-bird-844ba0cf144a413ea92c779f18912042
-export function Prince(props: any) {
+export function Prince(props: unknown) {
   const { nodes, materials } = useGLTF("./assets/PrinceAvatar.glb");
   return (
     <group {...props} dispose={null}>

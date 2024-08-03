@@ -1,13 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "@/components/Loader";
 
 import Island from "../models/island";
 import Sky from "@/models/sky";
-import PirateFlagPopup from "@/components/PirateFlagPopup";
+// import PirateFlagPopup from "@/components/PirateFlagPopup";
 import GoingMerry from "@/models/goingmerry";
 import NormalPopup from "@/components/NormalPopup";
 
@@ -20,17 +17,17 @@ export default function Home() {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
 
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
-  const handleConfirm = () => {
-    setShowPopup(false);
-    console.log("Confirmed!");
-  };
+  // const handleConfirm = () => {
+  //   setShowPopup(false);
+  //   console.log("Confirmed!", showPopup);
+  // };
 
   const adjustIs1andForScreenSize = () => {
     let screenSca1e = null;
-    let screenPosition = [0, -10, -40];
-    let rotation = [0.1, 5.5, 0];
+    const screenPosition = [0, -10, -40];
+    const rotation = [0.1, 5.5, 0];
     if (typeof window !== "undefined") {
       if (window.innerWidth < 768) {
         screenSca1e = [0.9, 0.9, 0.9];
@@ -63,7 +60,7 @@ export default function Home() {
           <ambientLight intensity={0.5} />
           <hemisphereLight
             groundColor={`#000000`}
-            skyColor={`#b1e1ff`}
+            color={`#b1e1ff`}
             intensity={1}
           />
           <GoingMerry scale={[0.3, 0.3, 0.3]} position={[1, -2.5, 0]} />

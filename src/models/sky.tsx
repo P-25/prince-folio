@@ -6,7 +6,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
 // 3D Model from: https://sketchfab.com/3d-models/phoenix-bird-844ba0cf144a413ea92c779f18912042
-export function Sky({ isRotating }: any) {
+export function Sky({ isRotating }: boolean) {
   const sky = useGLTF("./assets/sky.glb");
   const skyRef = useRef();
 

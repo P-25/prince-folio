@@ -1,11 +1,7 @@
 // components/PirateFlagPopup.tsx
 import React from "react";
 
-interface PirateFlagPopupProps {
-  onButtonClick: () => void;
-}
-
-const PirateFlagPopup: React.FC<PirateFlagPopupProps> = ({ onButtonClick }) => {
+const PirateFlagPopup: React.FC = () => {
   return (
     <div className="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 text-center z-50">
       <div
@@ -27,15 +23,15 @@ const PirateFlagPopup: React.FC<PirateFlagPopupProps> = ({ onButtonClick }) => {
             <svg
               className="w-6 h-6 group-hover:translate-x-[10%] duration-300 font-bold"
               stroke="currentColor"
-              stroke-width="1"
+              strokeWidth="1"
               viewBox="0 0 24 24"
               fill="white"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                stroke-linejoin="round"
-                stroke-linecap="round"
+                strokeLinejoin="round"
+                strokeLinecap="round"
               ></path>
             </svg>
           </button>

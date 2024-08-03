@@ -1,52 +1,47 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "@/components/Loader";
 
-import Island from "./../models/island";
-import Sky from "@/models/sky";
-import PirateFlagPopup from "@/components/PirateFlagPopup";
-import GoingMerry from "@/models/goingmerry";
-import Mill from "@/models/mill";
+// import Island from "./../models/island";
+// import Sky from "@/models/sky";
+// import PirateFlagPopup from "@/components/PirateFlagPopup";
+// import GoingMerry from "@/models/goingmerry";
+// import Mill from "@/models/mill";
 
 export default function Friday() {
-  const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(null);
+  const isRotating = false;
+  // const [isRotating, setIsRotating] = useState(false);
+  // const [currentStage, setCurrentStage] = useState(null);
 
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
-  const handleConfirm = () => {
-    setShowPopup(false);
-    console.log("Confirmed!");
-  };
+  // const handleConfirm = () => {
+  //   setShowPopup(false);
+  //   console.log("Confirmed!");
+  // };
 
-  const handleCancel = () => {
-    setShowPopup(false);
-    console.log("Cancelled!");
-  };
+  // const handleCancel = () => {
+  //   setShowPopup(false);
+  //   console.log("Cancelled!");
+  // };
 
-  useEffect(() => {
-    console.log(`Debug - currentStage`, currentStage);
-  }, [currentStage]);
+  // const adjustIs1andForScreenSize = () => {
+  //   let screenSca1e = null;
+  //   const screenPosition = [0, -10, -40];
+  //   const rotation = [0.1, 5.5, 0];
+  //   if (typeof window !== "undefined") {
+  //     if (window.innerWidth < 768) {
+  //       screenSca1e = [0.9, 0.9, 0.9];
+  //     } else {
+  //       screenSca1e = [1, 1, 1];
+  //     }
+  //   }
+  //   return [screenSca1e, screenPosition, rotation];
+  // };
 
-  const adjustIs1andForScreenSize = () => {
-    let screenSca1e = null;
-    let screenPosition = [0, -10, -40];
-    let rotation = [0.1, 5.5, 0];
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 768) {
-        screenSca1e = [0.9, 0.9, 0.9];
-      } else {
-        screenSca1e = [1, 1, 1];
-      }
-    }
-    return [screenSca1e, screenPosition, rotation];
-  };
-
-  const [islandSca1e, islandPosition, islandRotation] =
-    adjustIs1andForScreenSize();
+  // const [islandSca1e, islandPosition, islandRotation] =
+  //   adjustIs1andForScreenSize();
 
   return (
     <section className="w-full h-screen relative">
@@ -62,7 +57,7 @@ export default function Friday() {
           <ambientLight intensity={0.5} />
           <hemisphereLight
             groundColor={`#000000`}
-            skyColor={`#b1e1ff`}
+            color={`#b1e1ff`}
             intensity={1}
           />
 
