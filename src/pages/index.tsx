@@ -12,7 +12,7 @@ const Home: React.FC = () => {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Developer</span>
             <h1 className="h1 mb-6">
-              Hello, <br /> I'm <span className="text-accent">Prince</span>
+              Hello, <br /> I&apos;m <span className="text-accent">Prince</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
               Professional WordPress, JavaScript developer with more than 5+
