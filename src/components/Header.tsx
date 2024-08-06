@@ -1,14 +1,15 @@
 import Link from "next/link";
 
 const Header: React.FC = () => {
-  const LogoText = "</ps>";
   return (
     <div className="py-8 xl:py-12 text-white">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex xl:justify-between justify-center items-center">
         {/* logo */}
         <Link href="/">
           <h1 className="text-4xl font-semibold">
-            <span className="text-accent">{LogoText}</span>
+            {"<"}
+            <span className="text-accent">ps</span>
+            {">"}
           </h1>
         </Link>
       </div>
