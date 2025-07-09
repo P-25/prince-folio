@@ -4,9 +4,9 @@ const Photo: React.FC = () => {
   return (
     <div className="w-full h-full relative">
       {/* image */}
-      <div className="w-[300px] h-[300px] xl:w-[400px] xl:h-[400px] mix-blend-lighten">
+      <div className="w-[300px] h-[300px] xl:w-[300px] xl:h-[300px] mix-blend-lighten">
         <Image
-          src="/assets/photo.png"
+          src="/assets/profile.webp"
           priority
           quality={100}
           fill
