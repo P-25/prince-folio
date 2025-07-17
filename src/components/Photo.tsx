@@ -8,11 +8,13 @@ const Photo: React.FC = () => {
         <Image
           src="/assets/profile.webp"
           priority
-          quality={100}
+          quality={85}
           fill
           alt="Prince Sharma - React and WordPress Expert"
-          sizes="(max-width: 400px) 100vw, (max-width: 1200px) 50vw, 300px"
+          sizes="(max-width: 768px) 300px, (max-width: 1200px) 300px, 300px"
           className="object-contain"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
       </div>
     </div>
