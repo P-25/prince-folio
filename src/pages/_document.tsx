@@ -28,9 +28,6 @@ export default function Document() {
 
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-
-        {/* Preload critical image */}
-        <link rel="preload" as="image" href="/assets/profile.webp" />
       </Head>
       <body>
         <Main />
