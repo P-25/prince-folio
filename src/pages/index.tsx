@@ -9,17 +9,17 @@ const Home: React.FC = () => {
     <>
       <NextSeo
         title="Prince Sharma - Software Developer | WordPress & JavaScript Expert"
-        description="Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development, responsive design, and custom solutions."
+        description="Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development."
         canonical="https://princesharma.dev"
         openGraph={{
           type: "website",
           locale: "en_US",
           url: "https://princesharma.dev",
-          siteName: "Prince Sharma",
+          siteName: "Prince Sharma Portfolio",
           title:
             "Prince Sharma - Software Developer | WordPress & JavaScript Expert",
           description:
-            "Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development, responsive design, and custom solutions.",
+            "Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development.",
           images: [
             {
               url: "https://princesharma.dev/assets/profile.webp",
@@ -52,7 +52,20 @@ const Home: React.FC = () => {
         additionalLinkTags={[
           {
             rel: "icon",
+            type: "image/x-icon",
             href: "/favicon.ico",
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "32x32",
+            href: "/favicon-32x32.png",
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "16x16",
+            href: "/favicon-16x16.png",
           },
         ]}
       />
