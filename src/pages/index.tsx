@@ -9,7 +9,7 @@ const Home: React.FC = () => {
     <>
       <NextSeo
         title="Prince Sharma - Software Developer | WordPress & JavaScript Expert"
-        description="Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development."
+        description="Professional WordPress and JavaScript developer with 7+ years of experience. Specializing in modern web development."
         canonical="https://princesharma.dev"
         openGraph={{
           type: "website",
@@ -19,7 +19,7 @@ const Home: React.FC = () => {
           title:
             "Prince Sharma - Software Developer | WordPress & JavaScript Expert",
           description:
-            "Professional WordPress and JavaScript developer with 5+ years of experience. Specializing in modern web development.",
+            "Professional WordPress and JavaScript developer with 7+ years of experience. Specializing in modern web development.",
           images: [
             {
               url: "https://princesharma.dev/assets/profile.webp",
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
             name: "Prince Sharma",
             jobTitle: "Software Developer",
             description:
-              "Professional WordPress and JavaScript developer with 5+ years of experience",
+              "Professional WordPress and JavaScript developer with 7+ years of experience",
             url: "https://princesharma.dev",
             sameAs: [
               "https://github.com/P-25",
@@ -115,7 +115,7 @@ const Home: React.FC = () => {
                 <span className="text-accent">Prince</span>
               </h1>
               <p className="max-w-[500px] mb-9 text-white/80">
-                Professional WordPress, JavaScript developer with more than 5+
+                Professional WordPress, JavaScript developer with more than 7+
                 years of experience.
               </p>
               {/* btn and socials */}
