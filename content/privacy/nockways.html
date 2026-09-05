@@ -130,14 +130,55 @@ updated: 2026-09-05
   </li>
 </ul>
 
+<h2>App permissions</h2>
+
+<p>
+  Most of the permissions listed in the app&rsquo;s manifest are declared
+  automatically by <strong>Google Play Services and the Google Mobile Ads
+  SDK</strong>, not by the Game&rsquo;s own code. They are listed here in full
+  so nothing in the manifest is unexplained:
+</p>
+
+<ul>
+  <li>
+    <strong>INTERNET, ACCESS_NETWORK_STATE</strong> — to request an ad you have
+    chosen to watch and to check whether a connection exists. The Game sends
+    nothing else over the network, and plays fully offline without them.
+  </li>
+  <li>
+    <strong>AD_ID, ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION,
+    ACCESS_ADSERVICES_TOPICS</strong> — the Android advertising identifier and
+    the Privacy Sandbox APIs, used by Google to select and measure ads. This is
+    the processing described under <em>Advertising</em> above; you can reset or
+    delete the identifier in Android Settings.
+  </li>
+  <li>
+    <strong>WAKE_LOCK, FOREGROUND_SERVICE, BIND_JOB_SERVICE,
+    READ_BASIC_PHONE_STATE, DUMP</strong> — required by the bundled Google
+    libraries for their own scheduling and diagnostics. The Game&rsquo;s code
+    never calls them, and we do not read your phone number, call state or
+    device logs.
+  </li>
+</ul>
+
+<p>
+  The Game requests <strong>no access to your camera, microphone, contacts,
+  photos, files, or precise location</strong>.
+</p>
+
 <h2>Children</h2>
 
 <p>
   The Game is not directed at children under 13, and we do not knowingly
-  collect any information from them. Because we collect nothing ourselves,
-  there is nothing for us to delete — but if you are a parent or guardian and
-  have a concern about advertising shown to your child, please contact us at
-  the address below and we will help where we can.
+  collect any personal information from them. We collect nothing ourselves, so
+  in the ordinary course there is nothing for us to hold or delete.
+</p>
+
+<p>
+  <strong>If you believe a child has provided us with personal data, please
+  contact us at the address below and we will delete it.</strong> If you are a
+  parent or guardian with a concern about advertising shown to your child, get
+  in touch and we will help where we can.
 </p>
 
 <h2>Your rights</h2>
@@ -155,7 +196,20 @@ updated: 2026-09-05
   </li>
   <li>
     <strong>For data held by Google in connection with advertising:</strong>
-    exercise your rights directly with Google using the links above.
+    exercise your rights directly with Google, via the
+    <a
+      href="https://policies.google.com/privacy"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Google Privacy Policy</a
+    >
+    and
+    <a
+      href="https://policies.google.com/technologies/partner-sites"
+      target="_blank"
+      rel="noopener noreferrer"
+      >How Google uses information from sites or apps that use its services</a
+    >.
   </li>
 </ul>
 
@@ -180,7 +234,21 @@ updated: 2026-09-05
 
 <h2>Contact</h2>
 
+<!--
+  email_off tells Cloudflare's Scrape Shield to leave this block alone.
+  Without it the address is rewritten into a JavaScript-decoded span, which
+  makes it invisible to Play Store review tooling and anything else that does
+  not run scripts.
+-->
+<!--email_off-->
 <p>
   Questions about this policy, or about the Game generally, can go to
-  <a href="mailto:prncsharma275@gmail.com">prncsharma275@gmail.com</a>.
+  <a href="mailto:jasonreigns275@gmail.com">jasonreigns275@gmail.com</a>.
 </p>
+
+<ul>
+  <li><strong>Developer:</strong> P26 Games</li>
+  <li><strong>Email:</strong> jasonreigns275@gmail.com</li>
+  <li><strong>App:</strong> Nockways: Arrow Puzzle (com.p26games.nockways)</li>
+</ul>
+<!--/email_off-->
