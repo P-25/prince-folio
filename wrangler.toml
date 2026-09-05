@@ -1,0 +1,8 @@
+# Cloudflare Pages reads the build output directory from here, so it does not
+# have to be kept in sync with the dashboard by hand.
+#
+# The site is a pure static export (see `output: "export"` in next.config.mjs):
+# `npm run build` writes plain HTML to ./out and there are no Pages Functions.
+name = "prince-folio"
+pages_build_output_dir = "out"
+compatibility_date = "2026-09-05"
