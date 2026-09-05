@@ -95,7 +95,8 @@ function readingTime(html: string): number {
 /**
  * Intrinsic size of an image in /public, read straight from its header so
  * artwork of any shape lays out correctly without being configured.
- * Understands PNG and JPEG; anything else falls back to the caller's default.
+ * Understands PNG, JPEG and WebP; anything else falls back to the caller's
+ * default.
  */
 function imageSize(publicPath: string): { width: number; height: number } | null {
   try {
@@ -109,6 +110,35 @@ function imageSize(publicPath: string): { width: number; height: number } | null
     // PNG: IHDR always comes first, width and height as big-endian uint32.
     if (buffer.length > 24 && buffer.toString("ascii", 12, 16) === "IHDR") {
       return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+    }
+
+    // WebP: a RIFF container whose first chunk says which coding was used.
+    if (
+      buffer.length > 30 &&
+      buffer.toString("ascii", 0, 4) === "RIFF" &&
+      buffer.toString("ascii", 8, 12) === "WEBP"
+    ) {
+      const chunk = buffer.toString("ascii", 12, 16);
+      if (chunk === "VP8X") {
+        return {
+          width: 1 + buffer.readUIntLE(24, 3),
+          height: 1 + buffer.readUIntLE(27, 3),
+        };
+      }
+      if (chunk === "VP8 ") {
+        // 3-byte frame tag, 3-byte sync code, then 14-bit dimensions.
+        return {
+          width: buffer.readUInt16LE(26) & 0x3fff,
+          height: buffer.readUInt16LE(28) & 0x3fff,
+        };
+      }
+      if (chunk === "VP8L") {
+        const bits = buffer.readUInt32LE(21);
+        return {
+          width: (bits & 0x3fff) + 1,
+          height: ((bits >> 14) & 0x3fff) + 1,
+        };
+      }
     }
 
     // JPEG: walk the marker segments looking for a start-of-frame.

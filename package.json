@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate-seo.mjs",
-    "build": "next build",
+    "build": "node scripts/generate-seo.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "seo": "node scripts/generate-seo.mjs"
