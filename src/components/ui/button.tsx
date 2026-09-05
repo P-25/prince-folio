@@ -1,48 +1,51 @@
+import { cva, type VariantProps } from "class-variance-authority";
+import Link from "next/link";
 import * as React from "react";
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-base font-semibold ring-offset-white transition-colors",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap border font-mono text-[11px] uppercase tracking-label transition-colors duration-300",
   {
     variants: {
       variant: {
-        default: "bg-accent text-primary hover:bg-accent-hover",
-        primary: "bg-primary text-white",
+        solid: "border-ink bg-ink text-paper hover:border-accent hover:bg-accent",
         outline:
-          "border border-accent bg-transparent text-accent hover:bg-accent hover:text-primary",
+          "border-line-strong bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper",
+        ghost: "border-transparent bg-transparent text-ink-muted hover:text-ink",
       },
       size: {
-        default: "h-[44px] px-6",
-        md: "h-[48px] px-6",
-        lg: "h-[56px] px-8 text-sm uppercase tracking-[2px]",
+        sm: "h-9 px-4",
+        md: "h-11 px-6",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+    defaultVariants: { variant: "outline", size: "md" },
   }
 );
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "default" | "primary" | "outline" | null | undefined;
-  size: "default" | "md" | "lg" | null | undefined;
+type Variants = VariantProps<typeof buttonVariants>;
+
+type ButtonProps = Variants &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+
+type AnchorProps = Variants &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+
+/** Renders an <a>/<Link> when given `href`, otherwise a <button>. */
+function Button(props: ButtonProps | AnchorProps) {
+  const { className, variant, size, ...rest } = props;
+  const classes = cn(buttonVariants({ variant, size }), className);
+
+  if (typeof rest.href === "string") {
+    const { href, ...anchorProps } = rest as AnchorProps;
+    const isExternal = /^(https?:|mailto:|tel:)/.test(href) || href.endsWith(".pdf");
+
+    if (isExternal) {
+      return <a href={href} className={classes} {...anchorProps} />;
+    }
+    return <Link href={href} className={classes} {...anchorProps} />;
+  }
+
+  return <button className={classes} {...(rest as ButtonProps)} />;
 }
-
-const Button: React.FC<ButtonProps> = React.forwardRef<
-  HTMLButtonElement,
-  ButtonProps
->(({ className, variant, size = "default", ...props }, ref) => {
-  return (
-    <button
-      className={cn(buttonVariants({ variant, size, className }))}
-      ref={ref}
-      {...props}
-    />
-  );
-});
-
-Button.displayName = "Button";
 
 export { Button, buttonVariants };

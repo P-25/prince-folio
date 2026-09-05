@@ -1,180 +1,107 @@
-# Prince Sharma - Portfolio Website
+# Prince Sharma — Portfolio
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Showcasing my expertise in WordPress and JavaScript development with a clean, professional design.
+An editorial, content-first portfolio built with Next.js, TypeScript and
+Tailwind CSS. Minimal by design: one focused home page, plus writing and games
+sections generated from plain HTML files.
 
-## 🚀 Live Demo
+**Live:** [princesharma.dev](https://princesharma.dev)
 
-Visit my portfolio: [princesharma.dev](https://princesharma.dev)
+## Routes
 
-## ✨ Features
+| Route | What it is |
+| --- | --- |
+| `/` | Hero, what I do, evidence from shipped work, track record, latest writing, games, contact |
+| `/blog` | All posts, newest first |
+| `/blog/[slug]` | A post, generated from `content/blog/<slug>.html` |
+| `/games` | All games |
+| `/games/[slug]` | A game, generated from `content/games/<slug>.html` |
 
-- **Modern Design**: Clean, professional layout with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **SEO Optimized**: Built with Next.js SEO best practices
-- **Fast Performance**: Optimized images and code for lightning-fast loading
-- **PWA Ready**: Progressive Web App capabilities
-- **TypeScript**: Full TypeScript support for better development experience
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+Every route is statically generated at build time.
 
-## 🛠️ Tech Stack
+## Publishing content
 
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: React Icons
-- **Fonts**: Google Fonts (JetBrains Mono)
-- **SEO**: next-seo
-- **UI Components**: Custom components with class-variance-authority
-
-## 📁 Project Structure
+Posts and games are plain HTML files with a short metadata block at the top.
+Drop a file into `content/blog` or `content/games`, rebuild, and the page
+exists — no CMS, no database, no external service.
 
 ```
-prince-folio/
-├── public/
-│   ├── assets/
-│   │   ├── profile.webp
-│   │   └── Resume.pdf
-│   ├── favicon.ico
-│   ├── manifest.json
-│   ├── robots.txt
-│   └── sitemap.xml
-├── src/
-│   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── Layout.tsx
-│   │   ├── Photo.tsx
-│   │   ├── Social.tsx
-│   │   └── ui/
-│   │       └── button.tsx
-│   ├── lib/
-│   │   └── utils.js
-│   ├── pages/
-│   │   ├── _app.tsx
-│   │   ├── _document.tsx
-│   │   └── index.tsx
-│   └── styles/
-│       └── globals.css
-├── package.json
-├── tailwind.config.ts
-└── tsconfig.json
+content/blog/my-post.html   ->  /blog/my-post
+content/games/my-game.html  ->  /games/my-game
 ```
 
-## 🚀 Getting Started
+See [`content/README.md`](content/README.md) for the metadata fields and a
+full example of each.
 
-### Prerequisites
+Set `draft: true` to keep something out of production while still previewing
+it at its real URL with `npm run dev`.
 
-- Node.js 18+
-- npm or yarn
+## Editing the site copy
 
-### Installation
+Everything on the home page — the positioning statement, capabilities, proof
+cards, roles, toolkit, social links and contact details — lives in
+[`src/lib/site.ts`](src/lib/site.ts). Change the copy there rather than in the
+page components.
 
-1. **Clone the repository**
+## Design
 
-   ```bash
-   git clone https://github.com/P-25/prince-folio.git
-   cd prince-folio
-   ```
+| Token | Value |
+| --- | --- |
+| Paper | `#f4f2ed` |
+| Surface | `#fbfaf7` |
+| Ink | `#1c1b18` |
+| Muted ink | `#6b6862` |
+| Accent | `#1f4b99` |
 
-2. **Install dependencies**
+Three typefaces, each with one job: **Instrument Serif** for display
+headlines, **Inter** for body and UI, **JetBrains Mono** for labels, metadata
+and tags. Tokens are defined in
+[`src/styles/globals.css`](src/styles/globals.css) and exposed to Tailwind in
+[`tailwind.config.ts`](tailwind.config.ts).
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+## Tech
 
-3. **Run the development server**
+Next.js 14 (Pages Router) · TypeScript · Tailwind CSS · next-seo
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+## Getting started
 
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+```bash
+npm install
+npm run dev
+```
 
-## 📝 Available Scripts
+Then open [http://localhost:3000](http://localhost:3000).
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+## Scripts
 
-## 🎨 Customization
+| Script | Does |
+| --- | --- |
+| `npm run dev` | Development server, drafts visible |
+| `npm run build` | Regenerates the sitemap and feed, then builds for production |
+| `npm start` | Serves the production build |
+| `npm run lint` | ESLint |
+| `npm run seo` | Regenerates `public/sitemap.xml` and `public/feed.xml` on their own |
 
-### Personal Information
+## SEO
 
-Update your personal information in `src/pages/index.tsx`:
+Every route ships a unique title and description, a canonical URL, Open Graph
+and Twitter card tags, and schema.org JSON-LD — `Person` and `WebSite` on the
+home page, `BlogPosting` on posts, `VideoGame`/`MobileApplication` on games,
+and a `BreadcrumbList` on every nested page. Titles drop the site suffix when
+keeping it would push them past the ~60 characters search results show.
 
-- Name and title
-- Description and experience
-- Social media links
+`public/sitemap.xml` and `public/feed.xml` (an RSS feed of the blog) are
+generated from the routes and content files by
+[`scripts/generate-seo.mjs`](scripts/generate-seo.mjs), which runs
+automatically before every build. Drafts are excluded from both.
 
-### SEO Settings
+## Deployment
 
-Modify SEO settings in the same file:
+Push to GitHub and connect the repository to Vercel — no configuration needed.
+Any host that supports Next.js works.
 
-- Page title and description
-- Open Graph tags
-- Twitter Card settings
-- Structured data
+## Contact
 
-### Styling
-
-Customize the design in:
-
-- `tailwind.config.ts` - Tailwind configuration
-- `src/styles/globals.css` - Global styles
-- Component files for specific styling
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
-
-### Other Platforms
-
-The app can be deployed to any platform that supports Next.js:
-
-- Netlify
-- Railway
-- DigitalOcean App Platform
-
-## 📱 PWA Features
-
-The portfolio includes Progressive Web App features:
-
-- Web App Manifest
-- Service Worker ready
-- Installable on mobile devices
-- Offline capabilities
-
-## 🔍 SEO Features
-
-- Meta tags optimization
-- Open Graph tags
-- Twitter Cards
-- JSON-LD structured data
-- Sitemap generation
-- Robots.txt
-- Canonical URLs
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contact
-
-- **Website**: [princesharma.dev](https://princesharma.dev)
-- **LinkedIn**: [shprince](https://www.linkedin.com/in/shprince)
-- **GitHub**: [P-25](https://github.com/P-25)
-- **Twitter**: [@\_shprince](https://twitter.com/_shprince)
-- **Buy Me a Coffee**: [princesharma](https://buymeacoffee.com/princesharma)
-
----
-
-⭐ If you find this portfolio helpful, please give it a star on GitHub!
+- **Website** — [princesharma.dev](https://princesharma.dev)
+- **LinkedIn** — [shprince](https://www.linkedin.com/in/shprince)
+- **GitHub** — [P-25](https://github.com/P-25)
+- **X** — [@\_shprince](https://twitter.com/_shprince)

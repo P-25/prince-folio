@@ -1,24 +1,28 @@
 import Image from "next/image";
+import { site } from "@/lib/site";
 
-const Photo: React.FC = () => {
-  return (
-    <div className="w-full h-full relative">
-      {/* image */}
-      <div className="w-[300px] h-[300px] xl:w-[300px] xl:h-[300px] mix-blend-lighten relative">
-        <Image
-          src="/assets/profile.webp"
-          priority
-          quality={85}
-          fill
-          alt="Prince Sharma - React and WordPress Expert"
-          sizes="(max-width: 768px) 300px, (max-width: 1200px) 300px, 300px"
-          className="object-contain"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-        />
-      </div>
+/**
+ * The source portrait is a 300x300 transparent circular cutout, so it is
+ * framed as a disc rather than boxed — anything larger would soften it.
+ */
+const Photo: React.FC = () => (
+  <div className="relative mx-auto w-[220px] sm:w-[260px] lg:w-[288px]">
+    <div className="relative aspect-square overflow-hidden rounded-full border border-line bg-surface">
+      <Image
+        src={site.portrait}
+        alt={`Portrait of ${site.name}`}
+        fill
+        priority
+        quality={92}
+        sizes="288px"
+        className="object-cover"
+      />
     </div>
-  );
-};
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute -inset-4 rounded-full border border-line"
+    />
+  </div>
+);
 
 export default Photo;

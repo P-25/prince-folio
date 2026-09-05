@@ -3,23 +3,233 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply font-primary bg-primary text-white leading-loose;
-  }
-  .h1 {
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
-  }
-  .h2 {
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
-  }
-  .h3 {
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
-  }
-  .text-outline {
-    -webkit-text-stroke: 1px #ffffff;
+  :root {
+    color-scheme: light;
+
+    --paper: #f4f2ed;
+    --surface: #fbfaf7;
+    --ink: #1c1b18;
+    --ink-muted: #6b6862;
+    --ink-faint: #97938b;
+    --line: rgba(28, 27, 24, 0.13);
+    --line-strong: rgba(28, 27, 24, 0.28);
+    --accent: #1f4b99;
+    --accent-soft: rgba(31, 75, 153, 0.09);
+    --accent-line: rgba(31, 75, 153, 0.35);
   }
 
-  .text-outline-hover {
-    -webkit-text-stroke: 1px #4895ef;
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- layout ---- */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 sm:px-8 lg:px-12;
+  }
+
+  /* ---- type ---- */
+  .wordmark {
+    @apply font-sans font-semibold uppercase tracking-display;
+  }
+
+  .display {
+    @apply font-serif font-normal leading-[1.06] tracking-[-0.015em];
+    font-size: clamp(2.15rem, 5.6vw, 4.1rem);
+  }
+
+  .display-sm {
+    @apply font-serif font-normal leading-[1.12] tracking-[-0.01em];
+    font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+  }
+
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase tracking-label text-ink-faint;
+  }
+
+  .lede {
+    @apply text-ink-muted;
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
+    line-height: 1.75;
+  }
+
+  .lede strong,
+  .lede b {
+    @apply font-semibold text-ink;
+  }
+
+  /* ---- rules ---- */
+  .rule {
+    @apply h-px w-full bg-line;
+  }
+
+  /* ---- links ---- */
+  .link-ink {
+    @apply relative text-ink no-underline transition-colors duration-300;
+    box-shadow: inset 0 -1px 0 0 var(--line-strong);
+  }
+  .link-ink:hover {
+    @apply text-accent;
+    box-shadow: inset 0 -1px 0 0 var(--accent);
+  }
+
+  /* ---- cards ---- */
+  .card {
+    @apply border border-line bg-surface transition-colors duration-300;
+  }
+  .card:hover {
+    border-color: var(--line-strong);
+  }
+
+  /* ---- chip ---- */
+  .chip {
+    @apply inline-flex items-center gap-2 border border-line bg-surface px-3 py-1.5 font-mono text-[11px] uppercase tracking-label text-ink-muted;
+  }
+
+  .pulse-dot {
+    @apply relative inline-block h-1.5 w-1.5 shrink-0 rounded-full;
+    background: #2f9e63;
+    box-shadow: 0 0 0 0 rgba(47, 158, 99, 0.55);
+    animation: dot-pulse 2.4s ease-out infinite;
+  }
+
+  /* ---- long-form article body (blog posts written as HTML) ---- */
+  .prose {
+    @apply text-ink;
+    font-size: 1.0625rem;
+    line-height: 1.78;
+  }
+  .prose > * + * {
+    margin-top: 1.35em;
+  }
+  .prose h2 {
+    @apply font-serif font-normal leading-tight tracking-[-0.01em];
+    font-size: 1.75rem;
+    margin-top: 2.4em;
+    margin-bottom: -0.45em;
+  }
+  .prose h3 {
+    @apply font-sans font-semibold leading-snug;
+    font-size: 1.2rem;
+    margin-top: 2em;
+    margin-bottom: -0.5em;
+  }
+  .prose h4 {
+    @apply font-sans font-semibold;
+    font-size: 1.0625rem;
+    margin-top: 1.8em;
+    margin-bottom: -0.6em;
+  }
+  .prose a {
+    @apply text-accent underline underline-offset-[3px] transition-colors;
+    text-decoration-color: var(--accent-line);
+  }
+  .prose a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .prose strong {
+    @apply font-semibold text-ink;
+  }
+  .prose ul,
+  .prose ol {
+    @apply pl-5;
+  }
+  .prose ul {
+    @apply list-disc;
+  }
+  .prose ol {
+    @apply list-decimal;
+  }
+  .prose li::marker {
+    color: var(--ink-faint);
+  }
+  .prose li + li {
+    margin-top: 0.45em;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-line-strong pl-5 font-serif text-ink-muted;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  .prose code {
+    @apply rounded-[3px] border border-line bg-surface px-1.5 py-0.5 font-mono text-[0.85em] text-ink;
+  }
+  .prose pre {
+    @apply overflow-x-auto border border-line bg-[#faf8f4] p-5 font-mono text-[0.85rem] leading-relaxed;
+  }
+  .prose pre code {
+    @apply border-0 bg-transparent p-0 text-[1em];
+  }
+  .prose img,
+  .prose video {
+    @apply w-full border border-line;
+  }
+  .prose figure figcaption {
+    @apply mt-3 font-mono text-[11px] uppercase tracking-label text-ink-faint;
+  }
+  .prose hr {
+    @apply my-12 border-0 border-t border-line;
+  }
+  .prose table {
+    @apply w-full border-collapse text-[0.95rem];
+  }
+  .prose th,
+  .prose td {
+    @apply border-b border-line px-3 py-2.5 text-left align-top;
+  }
+  .prose th {
+    @apply font-mono text-[11px] uppercase tracking-label text-ink-faint;
+  }
+  .prose figure,
+  .prose .table-wrap {
+    @apply overflow-x-auto;
+  }
+}
+
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(47, 158, 99, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(47, 158, 99, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(47, 158, 99, 0);
   }
 }
