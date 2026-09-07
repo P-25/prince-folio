@@ -50,7 +50,7 @@
     z-index: -1;
     background-image:
       linear-gradient(rgba(244, 242, 237, 0.5), rgba(244, 242, 237, 0.5)),
-      url("/assets/background.jpg");
+      url("/assets/background.webp");
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
