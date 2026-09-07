@@ -1,6 +1,6 @@
 export const site = {
   name: "Prince Sharma",
-  role: "Senior Full Stack Developer",
+  role: "Senior Full Stack Developer | Next.js · WordPress · React Native · 7+ years",
   tagline: "Next.js · WordPress · React Native · 7+ years",
   url: "https://princesharma.dev",
   email: "prncsharma275@gmail.com",
@@ -33,6 +33,13 @@ export const nav = [
   { label: "Resume", href: "/assets/Resume.pdf", external: true },
 ];
 
+/** Companies whose teams I've worked with, and where they live. */
+const company = {
+  khatabook: "https://khatabook.com",
+  nurix: "https://www.nurix.ai",
+  curefit: "https://www.cult.fit",
+};
+
 /* ---------------------------------------------------------------- *
  * Hero — the positioning statement. Bold marks the phrases that
  * should carry the sentence when someone only skims it.
@@ -41,9 +48,11 @@ export const hero = {
   headline:
     "Full-stack web and mobile app developer, and amateur Game Developer.",
   statement: [
-    { text: "I direct a team of 8+ developers and stay hands-on in the code — " },
     {
-      text: "React, Next.js and React Native on the front, Node.js and AWS behind it",
+      text: "I direct a team of 8+ developers and stay hands-on in the code. ",
+    },
+    {
+      text: "React, Next.js and React Native on the front, Node.js, PHP and AWS behind it",
       bold: true,
     },
     { text: ". Seven years in, I've shipped " },
@@ -52,7 +61,11 @@ export const hero = {
       bold: true,
     },
     { text: ", working with the teams at " },
-    { text: "Khatabook, Nurix, STOA and Curefit", bold: true },
+    { text: "Khatabook", bold: true, href: company.khatabook },
+    { text: ", " },
+    { text: "Nurix/Nuplay", bold: true, href: company.nurix },
+    { text: " and " },
+    { text: "Curefit", bold: true, href: company.curefit },
     { text: ". Games are the part I build purely for the fun of it." },
   ],
 };
@@ -85,11 +98,10 @@ export const capabilities = [
 ];
 
 /* ---------------------------------------------------------------- *
- * Evidence — outcome-first. Every number here comes from real work.
+ * Selected work — outcome-first. Every number here comes from real work.
  * ---------------------------------------------------------------- */
 export const proof = [
   {
-    kicker: "Proof: Product & Scale",
     title: "A SaaS platform for the furnishing industry",
     body: "I built and scaled the platform on Next.js and Node.js, covering the full stack from data modelling and APIs through to the customer-facing product.",
     result: [
@@ -99,7 +111,6 @@ export const proof = [
     ],
   },
   {
-    kicker: "Proof: Commerce & Revenue",
     title: "KYC and Buy Now, Pay Later for a B2B store",
     body: "I implemented custom KYC and BNPL modules against the TWO API, handling user verification and credit checks inside a modern frontend.",
     result: [
@@ -109,7 +120,6 @@ export const proof = [
     ],
   },
   {
-    kicker: "Proof: Modernization & Leadership",
     title: "A two-million-item catalogue, moved to headless",
     body: "Migrating a legacy WordPress store to a Next.js frontend backed by Node.js and AWS Lambda, and replacing default search with Algolia's instant, faceted filtering.",
     result: [
@@ -141,7 +151,11 @@ export const experience = [
 ];
 
 /** Teams I have worked with through Appycodes, who owns those relationships. */
-export const clients = ["Khatabook", "Nurix", "STOA", "Curefit"];
+export const clients = [
+  { name: "Khatabook", href: company.khatabook },
+  { name: "Nurix/Nuplay", href: company.nurix },
+  { name: "Curefit", href: company.curefit },
+];
 
 export const toolkit = [
   "TypeScript",

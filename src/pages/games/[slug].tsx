@@ -119,7 +119,7 @@ const GamePage: React.FC<GamePageProps> = ({ game, policy }) => {
         <div className="shell py-12 md:py-16">
           <Link
             href="/games"
-            className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+            className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
           >
             &larr;&nbsp; Games
           </Link>
@@ -139,14 +139,14 @@ const GamePage: React.FC<GamePageProps> = ({ game, policy }) => {
             )}
 
             <div className="min-w-0">
-              <p className="label">{game.status}</p>
+              <p className="meta">{game.status}</p>
               <h1 className="display mt-3 text-balance">{game.title}</h1>
               {game.tagline && (
                 <p className="lede mt-4 max-w-prose">{game.tagline}</p>
               )}
 
               {meta.length > 0 && (
-                <p className="mt-6 font-mono text-[11px] uppercase tracking-label text-ink-faint">
+                <p className="mt-6 text-[0.875rem] text-ink-faint">
                   {meta.join("  ·  ")}
                 </p>
               )}
@@ -236,7 +236,7 @@ const GamePage: React.FC<GamePageProps> = ({ game, policy }) => {
                       key={label}
                       className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-4 border-b border-line py-3"
                     >
-                      <dt className="label pt-0.5">{label}</dt>
+                      <dt className="meta pt-0.5">{label}</dt>
                       <dd className="text-[0.95rem] text-ink-muted">{value}</dd>
                     </div>
                   ))}
@@ -245,7 +245,7 @@ const GamePage: React.FC<GamePageProps> = ({ game, policy }) => {
               {policy && (
                 <Link
                   href={`/games/${game.slug}/privacy-policy`}
-                  className="mt-5 inline-block font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-accent"
+                  className="mt-5 inline-block text-[0.875rem] text-ink-faint transition-colors hover:text-accent"
                 >
                   Privacy policy
                 </Link>
@@ -271,7 +271,7 @@ const GamePage: React.FC<GamePageProps> = ({ game, policy }) => {
       <div className="shell py-10">
         <Link
           href="/games"
-          className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+          className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
         >
           &larr;&nbsp; All games
         </Link>

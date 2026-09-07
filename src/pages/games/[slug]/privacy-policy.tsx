@@ -34,13 +34,13 @@ const PolicyPage: React.FC<PolicyPageProps> = ({ policy }) => (
       <div className="mx-auto max-w-prose">
         <Link
           href={`/games/${policy.slug}`}
-          className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+          className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
         >
           &larr;&nbsp; {policy.game}
         </Link>
 
         <header className="mt-10">
-          <p className="label">Last updated {policy.updatedLabel}</p>
+          <p className="meta">Last updated {policy.updatedLabel}</p>
           <h1 className="display mt-4 text-balance">{policy.title}</h1>
         </header>
 
@@ -55,7 +55,7 @@ const PolicyPage: React.FC<PolicyPageProps> = ({ policy }) => (
         <footer className="mt-16 border-t border-line pt-8">
           <Link
             href={`/games/${policy.slug}`}
-            className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+            className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
           >
             &larr;&nbsp; Back to {policy.game}
           </Link>

@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import GameCard from "@/components/GameCard";
 import type { GetStaticProps } from "next";
 import JsonLd from "@/components/JsonLd";
 import Seo from "@/components/Seo";
@@ -33,67 +32,27 @@ const GamesIndex: React.FC<GamesIndexProps> = ({ games }) => (
       ]}
     />
 
-    <div className="shell py-16 md:py-24">
-      <p className="label">Games</p>
-      <h1 className="display mt-5 max-w-[16ch] text-balance">
+    <div className="shell pb-6 pt-6 md:pb-10 md:pt-12">
+      {/* No width cap: the heading sets on one line once there is room. */}
+      <h1 className="display text-balance">
         Things I build when nobody&apos;s specced them.
       </h1>
-      <p className="lede mt-6 max-w-prose">
+      <p className="lede mt-3 max-w-prose">
         Side projects with a play or download link attached. No roadmap, no
         clients — just whatever idea stuck long enough to finish.
       </p>
     </div>
 
-    <section className="shell pb-8">
+    <section className="shell pb-12">
       {games.length === 0 ? (
-        <p className="border-y border-line py-16 text-center font-mono text-[11px] uppercase tracking-label text-ink-faint">
+        <p className="border-y border-line py-16 text-center text-[0.875rem] text-ink-faint">
           No games published yet — check back soon
         </p>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {games.map((game) => (
-            <li key={game.slug} className="card">
-              <Link
-                href={`/games/${game.slug}`}
-                className="group block h-full p-8"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="label">{game.status}</span>
-                  <span className="label">{game.dateLabel}</span>
-                </div>
-
-                {game.icon && (
-                  <span className="relative mt-5 block h-16 w-16 overflow-hidden rounded-[22%] border border-line bg-white">
-                    <Image
-                      src={game.icon}
-                      alt={`${game.title} app icon`}
-                      fill
-                      sizes="64px"
-                      className="object-cover"
-                    />
-                  </span>
-                )}
-
-                <h2 className="display-sm mt-4 transition-colors group-hover:text-accent">
-                  {game.title}
-                </h2>
-
-                {game.tagline && (
-                  <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-muted">
-                    {game.tagline}
-                  </p>
-                )}
-
-                <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-label text-ink-faint">
-                  {game.platforms.length > 0 && (
-                    <span>{game.platforms.join(" · ")}</span>
-                  )}
-                  {game.playUrl && <span className="text-accent">Play</span>}
-                  {game.downloadUrl && (
-                    <span className="text-accent">Download</span>
-                  )}
-                </div>
-              </Link>
+            <li key={game.slug}>
+              <GameCard game={game} />
             </li>
           ))}
         </ul>

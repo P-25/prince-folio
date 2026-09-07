@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer className="mt-24 border-t border-line">
       <div className="shell flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
-          <p className="font-mono text-[11px] uppercase tracking-label text-ink-muted">
+          <p className="text-[0.875rem] text-ink-muted">
             © {new Date().getFullYear()} {site.name}
           </p>
           <p className="text-sm text-ink-faint">
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               {...(item.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+              className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
             >
               {item.label}
             </Link>

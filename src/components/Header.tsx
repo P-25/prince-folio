@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import SocialIcon from "./SocialIcon";
 import { nav, site, socials } from "@/lib/site";
 
+/**
+ * A dark bar floating over the paper, rather than a rule drawn across it.
+ * The primary action (Resume) sits at the far right in cream so it reads as
+ * the one button on the page.
+ */
 const Header: React.FC = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -18,36 +23,32 @@ const Header: React.FC = () => {
   const isCurrent = (href: string) =>
     href === "/" ? router.pathname === "/" : router.pathname.startsWith(href);
 
-  return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-md">
-      <div className="shell flex h-16 items-center justify-between gap-6">
-        <Link
-          href="/"
-          aria-label={`${site.name} — home`}
-          className="font-mono text-base font-medium tracking-tight text-ink transition-colors hover:text-accent"
-        >
-          <span className="text-ink-faint">&lt;</span>
-          ps
-          <span className="text-ink-faint"> /&gt;</span>
-        </Link>
+  // Resume is the call to action, so it is pulled out of the link list.
+  const links = nav.filter((item) => !item.external);
 
-        <div className="flex items-center gap-6">
+  return (
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <div className="mx-auto max-w-shell rounded-2xl border border-white/10 bg-ink shadow-[0_10px_30px_-12px_rgba(28,27,24,0.5)]">
+        <div className="flex h-14 items-center gap-4 px-4 sm:h-16 sm:px-5">
+          <Link
+            href="/"
+            aria-label={`${site.name} — home`}
+            className="font-mono text-base font-medium tracking-tight text-paper transition-colors hover:text-white"
+          >
+            <span className="text-white/40">&lt;</span>
+            ps
+            <span className="text-white/40">/&gt;</span>
+          </Link>
+
           <nav aria-label="Primary" className="hidden sm:block">
-            <ul className="flex items-center gap-7">
-              {nav.map((item) => (
+            <ul className="flex items-center gap-6 pl-2">
+              {links.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    {...(item.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    aria-current={
-                      !item.external && isCurrent(item.href) ? "page" : undefined
-                    }
-                    className={`font-mono text-[11px] uppercase tracking-label transition-colors hover:text-ink ${
-                      !item.external && isCurrent(item.href)
-                        ? "text-ink"
-                        : "text-ink-faint"
+                    aria-current={isCurrent(item.href) ? "page" : undefined}
+                    className={`text-[0.875rem] transition-colors hover:text-paper ${
+                      isCurrent(item.href) ? "text-paper" : "text-white/50"
                     }`}
                   >
                     {item.label}
@@ -57,71 +58,98 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          <ul className="hidden items-center gap-4 border-l border-line pl-6 md:flex">
-            {socials.map((item) => (
+          <div className="ml-auto flex items-center gap-3 sm:gap-4">
+            <ul className="hidden items-center gap-3 md:flex">
+              {socials.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    title={item.label}
+                    className="block p-1 text-white/50 transition-colors hover:text-paper"
+                  >
+                    <SocialIcon id={item.id} className="h-[15px] w-[15px]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={site.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-1.5 rounded-full bg-paper px-4 py-2 text-[0.875rem] text-ink transition-colors hover:bg-white sm:inline-flex"
+            >
+              Resume
+              <span aria-hidden="true" className="text-ink-faint">
+                +
+              </span>
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setOpen((value) => !value)}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              className="-mr-1 p-2 text-[0.875rem] text-paper sm:hidden"
+            >
+              {open ? "Close" : "Menu"}
+            </button>
+          </div>
+        </div>
+
+        <nav
+          id="mobile-nav"
+          aria-label="Primary mobile"
+          hidden={!open}
+          className="border-t border-white/10 px-4 pb-4 sm:hidden"
+        >
+          <ul className="divide-y divide-white/10">
+            {links.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={item.label}
-                  title={item.label}
-                  className="block p-1 text-ink-faint transition-colors hover:text-accent"
+                  className="block py-3.5 text-[0.875rem] text-white/70"
                 >
-                  <SocialIcon id={item.id} className="h-[15px] w-[15px]" />
-                </a>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
 
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            className="-mr-2 p-2 font-mono text-[11px] uppercase tracking-label text-ink sm:hidden"
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-        </div>
-      </div>
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <ul className="flex items-center gap-4">
+              {socials.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className="block p-1 text-white/60 transition-colors hover:text-paper"
+                  >
+                    <SocialIcon id={item.id} className="h-[17px] w-[17px]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-      <nav
-        id="mobile-nav"
-        aria-label="Primary mobile"
-        hidden={!open}
-        className="border-t border-line bg-paper sm:hidden"
-      >
-        <ul className="shell divide-y divide-line py-1">
-          {nav.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                {...(item.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="block py-3.5 font-mono text-[11px] uppercase tracking-label text-ink-muted"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-          <li className="flex items-center gap-6 py-4">
-            {socials.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.label}
-                className="p-1 text-ink-muted transition-colors hover:text-accent"
-              >
-                <SocialIcon id={item.id} className="h-[17px] w-[17px]" />
-              </a>
-            ))}
-          </li>
-        </ul>
-      </nav>
+            <a
+              href={site.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-paper px-4 py-2 text-[0.875rem] text-ink"
+            >
+              Resume
+              <span aria-hidden="true" className="text-ink-faint">
+                +
+              </span>
+            </a>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 };

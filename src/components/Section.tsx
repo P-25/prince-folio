@@ -18,9 +18,9 @@ const Section: React.FC<SectionProps> = ({
   children,
 }) => (
   <section id={id} className={cn("border-t border-line", className)}>
-    <div className="shell py-16 md:py-20">
+    <div className="shell py-10 md:py-14">
       {(label || action) && (
-        <div className="mb-10 flex items-baseline justify-between gap-6">
+        <div className="mb-4 flex items-baseline justify-between gap-6">
           {label ? <h2 className="label">{label}</h2> : <span />}
           {action}
         </div>

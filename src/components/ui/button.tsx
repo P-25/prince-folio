@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap border font-mono text-[11px] uppercase tracking-label transition-colors duration-300",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap border text-[0.875rem] transition-colors duration-300",
   {
     variants: {
       variant: {

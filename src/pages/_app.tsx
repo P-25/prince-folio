@@ -1,17 +1,21 @@
 import RootLayout from "@/components/Layout";
 import type { AppProps } from "next/app";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, JetBrains_Mono, Jost } from "next/font/google";
 import "@/styles/globals.css";
 
-const sans = Inter({
+// Geometric sans. Variable, so no weight list is needed.
+const sans = Jost({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-const serif = Instrument_Serif({
+// High-contrast display serif. It is a light, small-on-the-body face, so the
+// display sizes in globals.css are set larger than they were for a sturdier
+// serif, and headings run at 500/600 rather than 400.
+const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600"],
   display: "swap",
   variable: "--font-serif",
 });

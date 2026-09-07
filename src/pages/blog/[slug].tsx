@@ -38,13 +38,13 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => (
       <div className="mx-auto max-w-prose">
         <Link
           href="/blog"
-          className="font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+          className="text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
         >
           &larr;&nbsp; Writing
         </Link>
 
         <header className="mt-10">
-          <p className="label">
+          <p className="meta">
             {post.dateLabel} · {post.readingTime} min read
             {post.draft && " · Draft"}
           </p>
@@ -53,7 +53,7 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => (
             <p className="lede mt-5">{post.description}</p>
           )}
           {post.tags.length > 0 && (
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-label text-ink-faint">
+            <p className="mt-6 text-[0.875rem] text-ink-faint">
               {post.tags.join(" · ")}
             </p>
           )}
@@ -76,7 +76,7 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => (
           </p>
           <Link
             href="/blog"
-            className="mt-6 inline-block font-mono text-[11px] uppercase tracking-label text-ink-faint transition-colors hover:text-ink"
+            className="mt-6 inline-block text-[0.875rem] text-ink-faint transition-colors hover:text-ink"
           >
             &larr;&nbsp; All posts
           </Link>

@@ -5,7 +5,6 @@ const NotFound: React.FC = () => (
   <>
     <Seo title="Not found — Prince Sharma" path="/404" noindex />
     <div className="shell flex min-h-[60vh] flex-col justify-center py-20">
-      <p className="label">Error 404</p>
       <h1 className="display mt-5 max-w-[14ch] text-balance">
         This page doesn&apos;t exist.
       </h1>

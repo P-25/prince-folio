@@ -39,12 +39,9 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ posts }) => {
         ]}
       />
 
-      <div className="shell py-16 md:py-24">
-        <p className="label">Writing</p>
-        <h1 className="display mt-5 max-w-[16ch] text-balance">
-          Notes from the build.
-        </h1>
-        <p className="lede mt-6 max-w-prose">
+      <div className="shell pb-6 pt-6 md:pb-10 md:pt-12">
+        <h1 className="display text-balance">Notes from the build.</h1>
+        <p className="lede mt-3 max-w-prose">
           Things I&apos;ve worked out the hard way — WordPress at scale,
           JavaScript, performance, and the unglamorous parts of shipping.
         </p>
@@ -83,7 +80,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ posts }) => {
                   href={`/blog/${post.slug}`}
                   className="group grid gap-3 py-8 md:grid-cols-[10rem_minmax(0,1fr)] md:gap-12"
                 >
-                  <div className="label pt-1.5">
+                  <div className="meta pt-1.5">
                     <span>{post.dateLabel}</span>
                     <span className="mt-1 block text-ink-faint">
                       {post.readingTime} min read
@@ -100,7 +97,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ posts }) => {
                       </p>
                     )}
                     {post.tags.length > 0 && (
-                      <p className="mt-4 font-mono text-[11px] uppercase tracking-label text-ink-faint">
+                      <p className="mt-4 text-[0.875rem] text-ink-faint">
                         {post.tags.join(" · ")}
                       </p>
                     )}
