@@ -132,10 +132,10 @@ export function gameSchema(game: GameMeta) {
           "@type": "Offer",
           price: /free/i.test(game.price) ? "0" : game.price,
           priceCurrency: "USD",
-          availability: game.playUrl
+          availability: game.downloadUrl || game.playUrl
             ? "https://schema.org/InStock"
             : "https://schema.org/PreOrder",
-          url: game.playUrl || url,
+          url: game.downloadUrl || game.playUrl || url,
         }
       : undefined,
   };
